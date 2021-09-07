@@ -2,7 +2,13 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import Carousel from "./Carousel";
 
-it("works when you click on the right arrow", function() {
+
+it("renders without crashing", function () {
+  render(<Carousel />);
+});
+
+
+it("works when you click on the right arrow", function () {
   const { queryByTestId, queryByAltText } = render(<Carousel />);
 
   // expect the first image to show, but not the second
