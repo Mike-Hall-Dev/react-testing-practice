@@ -7,6 +7,11 @@ it("renders without crashing", function () {
   render(<Carousel />);
 });
 
+it("matches snapshot", function () {
+  const { asFragment } = render(<Carousel />);
+  expect(asFragment()).toMatchSnapshot();
+})
+
 
 it("works when you click on the right arrow", function () {
   const { queryByTestId, queryByAltText } = render(<Carousel />);
@@ -23,3 +28,15 @@ it("works when you click on the right arrow", function () {
   expect(queryByAltText("Photo by Richard Pasquarella on Unsplash")).not.toBeInTheDocument();
   expect(queryByAltText("Photo by Pratik Patel on Unsplash")).toBeInTheDocument();
 });
+
+it("Works when you click the left arrow", function () {
+  const { getByTestId, queryByAltText } = render(<Carousel />);
+  const leftArrow = getByTestId("left-arrow");
+  const rightArrow = getByTestId("right-arrow");
+
+  fireEvent.click(rightArrow);
+  fireEvent.click(leftArrow);
+
+  expect(queryByAltText("Photo by Richard Pasquarella on Unsplash")).toBeInTheDocument();
+  expect(queryByAltText("Photo by Pratik Patel on Unsplash")).not.toBeInTheDocument();
+})

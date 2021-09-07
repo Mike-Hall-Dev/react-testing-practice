@@ -10,6 +10,11 @@
   color: #aaa;
 }
 
+.Carousel-main > i.hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+
 .Carousel-main > i:hover {
   color: black;
 }
